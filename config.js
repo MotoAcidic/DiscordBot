@@ -1,3 +1,5 @@
+// Copyright 2020 Precision Electric Motor Sales
+
 module.exports = {
     "bot": {
         "token": "xx",

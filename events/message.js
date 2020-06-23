@@ -1,3 +1,5 @@
+// Copyright 2020 Precision Electric Motor Sales
+
 module.exports = (client, message) => {
     // Ignore all bots and prevent endless looping of bot talk
     if (message.author.bot) return;

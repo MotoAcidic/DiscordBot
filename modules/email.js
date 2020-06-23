@@ -1,3 +1,5 @@
+// Copyright 2020 Precision Electric Motor Sales
+
     const config = require('../config.js');
     const nodemailer = require("nodemailer");
 
@@ -75,7 +77,6 @@
 
                 } else {
                     var outOfHoursTimer = emailAlert;
-                    console.log('Outside of Business hours!');
                     global.globalTimer = setTimeout(outOfHoursTimer, 1800000);
                     console.log("Outside of Operating hours, will start a new timer!");
                 }

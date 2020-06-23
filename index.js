@@ -1,3 +1,5 @@
+// Copyright 2020 Precision Electric Motor Sales
+
 const fs = require('fs');
 const Discord = require('discord.js');
 const Enmap = require("enmap");
