@@ -23,8 +23,8 @@
                 console.log("Restarted the timer since its the weekend and we dont like spam");
 
             } else
-                if (global.globalDay > 0 && global.globalDay < 6 && global.globalHours > 8 && global.globalHours < 18) {
-
+                if (global.globalDay > 0 && global.globalDay < 6 && global.globalHours > 8 && global.globalHours < 17) {
+                    // We use 17 as our end of day because it will read anything in 1700 as during work hours
                         console.log('During Business Hours!');
 
                         // Send out the email to department heads
