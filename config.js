@@ -1,3 +1,5 @@
+// Copyright 2020 Precision Electric Motor Sales
+
 module.exports = {
     "bot": {
         "token": "xx",
@@ -68,6 +70,11 @@ module.exports = {
         "pass": 'xxx', // Password for account used above
         "from": 'xxx', // Must be the email used for user account above
         "to": 'xxx, xxx' // To add more emails just use ,
+    },
+    "hoursOfOperation": {
+        "mainOfficeOpen": '8', // AM time of operation
+        "mainOfficeClose": '6', // PM time of close
+        "lastWarehouseOpen": '8' // EST based time zone 
     },
     "colors": {
         "purple_dark": "#6a006a",

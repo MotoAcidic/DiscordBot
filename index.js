@@ -1,3 +1,5 @@
+// Copyright 2020 Precision Electric Motor Sales
+
 const fs = require('fs');
 const Discord = require('discord.js');
 const Enmap = require("enmap");
@@ -13,6 +15,10 @@ var startEmailTimer = sendEmail.command_sendEmail;
 // Set some globals to call in other files
 global.globalClient = client;
 global.globalTimer = setTimeout(startEmailTimer, 1800000); // 30 min timer to trigger alert email
+global.globalDay = new Date().getDay(); // Current day 0-6 (0 = sunday monday = 1)
+global.globalHours = new Date().getHours(); // Current hours of the 0-23  (0 = midnight 1am = 1)
+global.globalOfficeOpen = config.hoursOfOperation.mainOfficeOpen;
+global.globalOfficeClose = config.hoursOfOperation.mainOfficeClose;
 // Restart the timer after it reaches the end
 restartTimer = function () {
     global.globalTimer = setTimeout(startEmailTimer, 1800000); // 30 min timer to trigger alert email
@@ -118,5 +124,6 @@ fs.readdir("./commands/", (err, files) => {
         client.commands.set(commandName, props);
     });
 });
-
+//console.log(global.globalHours);
+//console.log(global.globalDay);
 client.login(config.bot.token);

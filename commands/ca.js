@@ -1,3 +1,6 @@
+// Copyright 2013 - 2020 George H. Slaterpryce III
+// Copyright 2020 Precision Electric Motor Sales
+
 const config = require('../config.js');
 const sendEmail = require('../modules/email.js');
 
