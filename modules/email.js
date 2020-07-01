@@ -25,7 +25,7 @@
             } else
                 if (global.globalDay > 0 && global.globalDay < 6 && global.globalHours > 8 && global.globalHours < 17) {
                     // We use 17 as our end of day because it will read anything in 1700 as during work hours
-                        console.log('During Business Hours!');
+                        console.log('During Business Hours and Alerts hasnt send anything to FolderMill to print in 30 minutes!');
 
                         // Send out the email to department heads
                         var transporter = nodemailer.createTransport({
@@ -39,15 +39,25 @@
                         var mailOptions = {
                             from: config.emailsettings.from,
                             to: config.emailsettings.to,
-                            subject: 'Pick Ticket Monitor',
-                            text: 'Pick Tickets havent printed in over 30 minutes.'
+                            subject: 'Pick Ticket Monitor Alert',
+                            text: 'No warehouse has received Pick Tickets in 30 minutes.' +
+                                'To fix the issue do the following on Pems-appsrv-3' +
+                                'Open up services and find Knowledge sync and Stop the Service. Don’t just Restart it!' +
+                                'Then open up Task Manager and click on the Details Tab.' +
+                                'Look for anything starting with KS & the user is “SAU” & kill them. This is the hangup with Alerts.' +
+                                'If you see Administrator or LWA as the user, that is someone actually in, so ask them to exit before you blow them away & they / we lose any work.' +
+                                'Start the service.' +
+                                'You should now see things start to pick back up & process.' +
+                                'Example Process under Details Tab are the following:' +
+                                'KS_Report.exe'
+
                         };
 
                         transporter.sendMail(mailOptions, function (err, data) {
                             if (err) {
-                                console.log('Errors have occured');
+                                console.log('Errors have occured and Email was not sent!');
                             } else {
-                                conssole.log('Email has been sent out!');
+                                conssole.log('Email has been sent out to the people who need to be informed!');
 
                             }
                         });
