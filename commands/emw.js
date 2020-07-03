@@ -3,16 +3,18 @@
 
 const config = require('../config.js');
 const sendEmail = require('../modules/email.js');
+var curretDate = new Date();
+var timeStamp = curretDate.toLocaleString();
 
 module.exports = {
     command_emw: function () {
-        // Imports / Requires
         var dirwatch = require("../modules/DirectoryWatcher.js");
         var startEmailTimer = sendEmail.command_sendEmail;
         var locationChannel = globalClient.channels.get(config.locations.EMW);
         var recentChannel = globalClient.channels.get(config.channels.mostrecent);
         var deletedChannel = globalClient.channels.get(config.channels.deleted);
         var changedChannel = globalClient.channels.get(config.channels.recentlychanged);
+
 
         // Create a monitor object that will watch a directory
         // and all it's sub-directories (recursive) in this case
@@ -46,7 +48,7 @@ module.exports = {
                     }
                 }
             });
-            console.log("File Deleted: " + filePath);
+            console.log("File Deleted: " + filePath + ' ' + timeStamp);
         });
 
         // Log to the console when a folder is removed
@@ -66,7 +68,7 @@ module.exports = {
                     }
                 }
             });
-            console.log("Folder Removed: " + folderPath);
+            console.log("Folder Removed: " + folderPath + ' ' + timeStamp);
         });
 
         // log to the console when a folder is added
@@ -86,7 +88,7 @@ module.exports = {
                     }
                 }
             });
-            console.log(folderPath);
+            console.log(folderPath + ' ' + timeStamp);
         });
 
         // Log to the console when a file is changed.
@@ -116,6 +118,7 @@ module.exports = {
                 console.log("  + " + key + " changed...");
                 console.log("    - From: " + ((changes[key].baseValue instanceof Date) ? changes[key].baseValue.toISOString() : changes[key].baseValue));
                 console.log("    - To  : " + ((changes[key].comparedValue instanceof Date) ? changes[key].comparedValue.toISOString() : changes[key].comparedValue));
+                console.log(timeStamp);
             }
 
         });
@@ -153,10 +156,9 @@ module.exports = {
                 }
             });
             clearTimeout(globalTimer);
-            console.log('Just reset the Email timer back to 0');
             console.log("File Added: " + fileDetail.fullPath);
             global.globalTimer = setTimeout(startEmailTimer, 1800000); // 30 min timer to trigger alert email
-            console.log('Just started a new 30m Timer!');
+            console.log('Restarted the 30 Minute timer!' + ' ' + timeStamp);
         });
 
         console.log("EMW Scanning has started");

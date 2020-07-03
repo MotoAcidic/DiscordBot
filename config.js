@@ -4,7 +4,8 @@ module.exports = {
     "bot": {
         "token": "xx",
         "prefix": "+",
-        "ownerID": "202145535086297088"
+        "ownerID": "202145535086297088",
+        "discord": "true" //If true this will send messages to discord
     },
     "locations": {
         // The discord channel ID (Right click channel get ID)
